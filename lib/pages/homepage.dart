@@ -15,7 +15,9 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
       ),
       drawer: const Mdrawer(),
       body: _buildUserList(),
@@ -24,7 +26,7 @@ class Homepage extends StatelessWidget {
 
   Widget _buildUserList() {
     return StreamBuilder(
-      stream: _chatservices.getUsersStream(),
+      stream: _chatservices.getUsersStreamExcludingBlocked(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Text("Error");
